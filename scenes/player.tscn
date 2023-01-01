@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://e17kfublywd"]
+
+[ext_resource type="ArrayMesh" uid="uid://bx0i3pb2dco01" path="res://art/player.obj" id="1_pgkey"]
+[ext_resource type="Material" uid="uid://b2oaw38as858u" path="res://art/pupil.material" id="2_xey7t"]
+[ext_resource type="Material" uid="uid://dm4xpk56tutih" path="res://art/eye.material" id="3_qafwd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dsjb3"]
+albedo_color = Color(1, 0.35, 0, 1)
+
+[sub_resource type="SphereShape3D" id="1"]
+radius = 1.0
+
+[sub_resource type="CylinderShape3D" id="2"]
+height = 1.0
+radius = 1.09005
+
+[sub_resource type="Animation" id="Animation_qkxlp"]
+resource_name = "swim"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Character")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.2, 1, 0, 0.225102, 0, 0.7, 1, 0, 0.35, 0, 1, 1, 0, 0.399061, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Character")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.1, 1, 0, 0, 0, 1, 0.5, 1, 0.07, 0, 0, 0.998, 1.2, 1, -0.078, 0, 0, 0.997)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fd2ct"]
+_data = {
+"swim": SubResource("Animation_qkxlp")
+}
+
+[node name="Player" type="HxPlayer"]
+collision_mask = 6
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Character" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.990987, 0.133953, 0, -0.133953, 0.990987, 0, 0.334476, 0)
+mesh = ExtResource("1_pgkey")
+surface_material_override/0 = ExtResource("2_xey7t")
+surface_material_override/1 = SubResource("StandardMaterial3D_dsjb3")
+surface_material_override/2 = ExtResource("3_qafwd")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.209482, 0)
+shape = SubResource("1")
+
+[node name="MobDetector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape" type="CollisionShape3D" parent="MobDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00389755, 0.144342, 0.00332022)
+shape = SubResource("2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "swim"
+libraries = {
+"": SubResource("AnimationLibrary_fd2ct")
+}

@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://cx0nj2crlegrd"]
+
+[ext_resource type="Shader" path="res://scenes/puff.gdshader" id="1_l6cjv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rotni"]
+albedo_color = Color(0.368627, 0.392157, 1, 1)
+
+[sub_resource type="Curve" id="Curve_2mf2s"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0619469, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.10909, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_61lxc"]
+curve = SubResource("Curve_2mf2s")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rn62d"]
+lifetime_randomness = 0.5
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 37.82
+linear_accel_min = -20.16
+linear_accel_max = -20.16
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_61lxc")
+turbulence_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_ymayt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pr3q8"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ch44q"]
+noise_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tv8ti"]
+seamless = true
+noise = SubResource("FastNoiseLite_ch44q")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sg4as"]
+render_priority = 0
+shader = ExtResource("1_l6cjv")
+shader_parameter/speed = 0.146
+shader_parameter/color = Vector4(0.815, 0.286, 0, 0)
+shader_parameter/emission_strength = 5.0
+shader_parameter/offset = 0.502
+shader_parameter/smoothness = 0.15
+shader_parameter/distort = 1.0
+shader_parameter/scale = 0.074
+shader_parameter/noise = SubResource("NoiseTexture2D_tv8ti")
+
+[node name="puff" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_rotni")
+emitting = false
+amount = 50
+lifetime = 0.18
+one_shot = true
+speed_scale = 0.49
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_rn62d")
+draw_pass_1 = SubResource("SphereMesh_ymayt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(241.367, 0, 0, 0, 51.2439, 0, 0, 0, 186.52, 0.113636, 30.2898, -0.163494)
+visible = false
+mesh = SubResource("BoxMesh_pr3q8")
+surface_material_override/0 = SubResource("ShaderMaterial_sg4as")

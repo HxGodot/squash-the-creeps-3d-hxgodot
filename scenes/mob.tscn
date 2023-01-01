@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://rn5kctq4rogf"]
+
+[ext_resource type="ArrayMesh" uid="uid://g27r8xurgdfy" path="res://art/mob.obj" id="2_ks1lm"]
+[ext_resource type="Material" uid="uid://dm4xpk56tutih" path="res://art/eye.material" id="3_ev6jf"]
+[ext_resource type="Material" uid="uid://b2oaw38as858u" path="res://art/pupil.material" id="4_0m6m4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lec76"]
+albedo_color = Color(0.14902, 0, 1, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vis5u"]
+height = 1.0
+radius = 1.0
+
+[sub_resource type="Animation" id="Animation_qkxlp"]
+resource_name = "swim"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Character")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.2, 1, 0, 0.225102, 0, 0.7, 1, 0, 0.35, 0, 1, 1, 0, 0.399061, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Character")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.1, 1, 0, 0, 0, 1, 0.5, 1, 0.07, 0, 0, 0.998, 1.2, 1, -0.078, 0, 0, 0.997)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fd2ct"]
+_data = {
+"swim": SubResource("Animation_qkxlp")
+}
+
+[node name="Mob" type="HxMob" groups=["mob"]]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Character" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.994487, -0.104859, 0, 0.104859, 0.994487, 0, 0.275061, 0)
+mesh = ExtResource("2_ks1lm")
+surface_material_override/0 = ExtResource("3_ev6jf")
+surface_material_override/1 = SubResource("StandardMaterial3D_lec76")
+surface_material_override/2 = ExtResource("4_0m6m4")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.567113, 0)
+shape = SubResource("CylinderShape3D_vis5u")
+
+[node name="VisibilityNotifier" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.816658, 0.046859, 0)
+aabb = AABB(-2, 0, -2, 2.5, 1.281, 4)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "swim"
+libraries = {
+"": SubResource("AnimationLibrary_fd2ct")
+}

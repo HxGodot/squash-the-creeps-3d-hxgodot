@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://usepm46ga04v"]
+
+[ext_resource type="FontFile" uid="uid://dfsie8c15feqy" path="res://fonts/Montserrat-Medium.ttf" id="1_kle0s"]
+
+[resource]
+font = ExtResource("1_kle0s")
+font_size = 64
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.0470588)
+shadow_offset = Vector2(1, 1.035)
