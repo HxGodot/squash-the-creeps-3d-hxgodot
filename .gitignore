@@ -25,7 +25,6 @@ logs/*
 *.o
 *.os
 *.so
-*.obj
 *.bc
 *.pyc
 *.dblite
