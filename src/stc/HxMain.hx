@@ -36,7 +36,7 @@ class HxMain extends Node {
 
         
         mobTimer = get_node("MobTimer").as(Timer);
-        mobTimer.timeout.connect(Callable.fromObjectMethod(this, "onMobTimer"), 0);
+        mobTimer.on_timeout.connect(Callable.fromObjectMethod(this, "onMobTimer"), 0);
         
         player.onHit.connect(Callable.fromObjectMethod(this, "onPlayerHit"), 0);
         

@@ -50,7 +50,7 @@ class HxPlayer extends CharacterBody3D {
 		animPlayer = this.get_node("AnimationPlayer").as(AnimationPlayer);
 		pivot = this.get_node("Pivot").as(Node3D);
 
-		this.get_node("MobDetector").as(Area3D).body_entered.connect(
+		this.get_node("MobDetector").as(Area3D).on_body_entered.connect(
 			Callable.fromObjectMethod(this, "onMobDetected"), 0
 		);
 	}

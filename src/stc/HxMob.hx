@@ -16,8 +16,6 @@ class HxMob extends CharacterBody3D {
 
 	@:export public var onSquashed:TypedSignal<()->Void>;
 
-	var velocity = new Vector3(0, 0, 0);
-
 	public function new() {
 		super();
 		onSquashed = Signal.fromObjectSignal(this, "onSquashed");
@@ -27,7 +25,7 @@ class HxMob extends CharacterBody3D {
 		if (Engine.singleton().is_editor_hint()) // skip if in editor
             return;
         
-		this.get_node("VisibilityNotifier").as(VisibleOnScreenNotifier3D).screen_exited.connect(
+		this.get_node("VisibilityNotifier").as(VisibleOnScreenNotifier3D).on_screen_exited.connect(
 			Callable.fromObjectMethod(this, "queue_free"), 0
 		);
 	}
@@ -36,7 +34,7 @@ class HxMob extends CharacterBody3D {
 		if (Engine.singleton().is_editor_hint()) // skip if in editor
             return;
 
-		this.set_velocity(velocity);
+		//this.set_velocity(velocity); // not needed anymore, since we use the property below
 		this.move_and_slide();
 	}
 
