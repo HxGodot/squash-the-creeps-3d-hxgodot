@@ -28,8 +28,15 @@ class HxPlayer extends CharacterBody3D {
 	static var MoveForward:godot.variant.StringName;
 	static var MoveBackward:godot.variant.StringName;
 	static var Jump:godot.variant.StringName;
+	
 
 	static var grpMob:godot.variant.StringName;
+
+	var leftPressed = false;
+	var rightPressed = false;
+	var upPressed = false;
+	var downPressed = false;
+	var jumpPressed = false;
 
 	public function new() {
 		super();
@@ -63,13 +70,13 @@ class HxPlayer extends CharacterBody3D {
 		var direction = new Vector3(0, 0, 0);
 
 		var input = godot.Input.singleton();
-		if (input.is_action_pressed(MoveRight, false))
+		if (rightPressed)
 			direction.x += 1;
-		if (input.is_action_pressed(MoveLeft, false))
+		if (leftPressed)
 			direction.x -= 1;
-		if (input.is_action_pressed(MoveForward, false))
+		if (upPressed)
 			direction.z -= 1;
-		if (input.is_action_pressed(MoveBackward, false))
+		if (downPressed)
 			direction.z += 1;
 
 		var len = direction.normalize();
@@ -83,8 +90,9 @@ class HxPlayer extends CharacterBody3D {
 		velocity.z = direction.z * speed;
 		velocity.y -= fallAcceleration * _delta;
 
-		if (this.is_on_floor() && input.is_action_just_pressed(Jump, false)) {
+		if (this.is_on_floor() && jumpPressed) {
 			velocity.y += jumpImpulse;
+			jumpPressed = false;
 		}
 
 		for (i in 0...get_slide_collision_count()) {
@@ -115,5 +123,25 @@ class HxPlayer extends CharacterBody3D {
 			onHit.emit();
 			queue_free();
 		}
+	}
+
+	public function left(_d:Bool) {
+		leftPressed = _d;
+	}
+
+	public function right(_d:Bool) {
+		rightPressed = _d;
+	}
+
+	public function up(_d:Bool) {
+		upPressed = _d;
+	}
+
+	public function down(_d:Bool) {
+		downPressed = _d;
+	}
+
+	public function jump() {
+		jumpPressed = true;
 	}
 }

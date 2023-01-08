@@ -1,3 +1,4 @@
+-D HXCPP_GC_DEBUG_LEVEL=3
 # add libs, let hxgodot add its extraParams.hxml first
 -lib hxgodot
 -lib compiletime
@@ -5,4 +6,7 @@
 -main HxGodot
 -cp src
 # force include our gamecode into the extension
+#--macro include('godot', true)
 --macro include('stc', true)
+
+-lib grig.midi
