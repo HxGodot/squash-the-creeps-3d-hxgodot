@@ -194,7 +194,7 @@ class HxMain extends Node {
     }
 
     override function _unhandled_input(event:InputEvent) {
-        if (event.is_action_pressed("ui_accept", faalse, false) && retry.is_visible()) {
+        if (event.is_action_pressed("ui_accept", false, false) && retry.is_visible()) {
             get_tree().reload_current_scene();
         }
     }
