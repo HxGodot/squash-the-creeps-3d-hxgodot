@@ -1,5 +1,7 @@
 # squash-the-creeps-3d-hxgodot
 
+> **Warning** This is advanced sample game. Be sure to checkout HxGodot's [README](https://github.com/HxGodot/hxgodot#readme) first.
+
 ```
 haxelib git hxgodot https://github.com/HxGodot/hxgodot.git
 haxelib run hxgodot generate_bindings -y
