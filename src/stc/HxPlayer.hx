@@ -72,7 +72,8 @@ class HxPlayer extends CharacterBody3D {
         if (input.is_action_pressed(MoveBackward, false))
             direction.z += 1;
 
-        var len = direction.normalize();
+        direction.normalize();
+        var len = direction.length();
         if (len > 0) {
             pivot.look_at(this.get_transform().origin + direction, Vector3.UP());
             animPlayer.set_speed_scale(4);
