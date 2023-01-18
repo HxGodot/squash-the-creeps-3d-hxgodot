@@ -30,7 +30,8 @@ logs/*
 *.dblite
 *.pdb
 *.lib
-bin
+bin/*
+!bin/.gdignore
 *.config
 *.creator
 *.creator.user
