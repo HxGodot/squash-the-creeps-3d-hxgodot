@@ -50,9 +50,10 @@ class HxPlayer extends CharacterBody3D {
         animPlayer = this.get_node("AnimationPlayer").as(AnimationPlayer);
         pivot = this.get_node("Pivot").as(Node3D);
 
-        this.get_node("MobDetector").as(Area3D).on_body_entered.connect(
-            Callable.fromObjectMethod(this, "onMobDetected"), 0
-        );
+        // manual way of connecting functions to signals
+        // this.get_node("MobDetector").as(Area3D).on_body_entered.connect(
+        //     Callable.fromObjectMethod(this, "onMobDetected"), 0
+        // );
     }
 
     override function _physics_process(_delta:Float):Void {
@@ -111,7 +112,7 @@ class HxPlayer extends CharacterBody3D {
     }
 
     @:export
-    public function onMobDetected() {
+    public function onTouchingMob(_node:Node3D) {
         if (this.is_on_floor()) {
             onHit.emit();
             queue_free();

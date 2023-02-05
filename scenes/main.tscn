@@ -20,7 +20,7 @@ _data = {
 point_count = 5
 
 [sub_resource type="FontFile" id="6"]
-fallbacks = [ExtResource("3")]
+fallbacks = Array[Font]([ExtResource("3")])
 face_index = null
 embolden = null
 transform = null
@@ -126,11 +126,12 @@ grow_vertical = 2
 theme = SubResource("7")
 
 [node name="ScoreLabel" type="HxScore" parent="UserInterface"]
+layout_mode = 0
 text = "Score: 0"
 label_settings = ExtResource("3_gjypw")
 
 [node name="Retry" type="ColorRect" parent="UserInterface"]
-anchors_preset = 15
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -138,7 +139,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.470588)
 
 [node name="Label" type="Label" parent="UserInterface/Retry"]
-anchors_preset = 8
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

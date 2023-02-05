@@ -54,7 +54,7 @@ surface_material_override/2 = ExtResource("3_qafwd")
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.209482, 0)
 shape = SubResource("1")
 
-[node name="MobDetector" type="Area3D" parent="."]
+[node name="MobDetector" type="HxArea3D" parent="."]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
@@ -68,3 +68,6 @@ autoplay = "swim"
 libraries = {
 "": SubResource("AnimationLibrary_fd2ct")
 }
+
+[connection signal="body_entered" from="MobDetector" to="." method="onTouchingMob"]
+[connection signal="body_entered" from="MobDetector" to="MobDetector" method="onBodyEntered"]
