@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cefn6sfr20hfn"]
+[gd_scene load_steps=11 format=3 uid="uid://cefn6sfr20hfn"]
 
 [ext_resource type="PackedScene" uid="uid://e17kfublywd" path="res://scenes/player.tscn" id="1"]
 [ext_resource type="FontFile" uid="uid://dfsie8c15feqy" path="res://fonts/Montserrat-Medium.ttf" id="3"]
 [ext_resource type="LabelSettings" uid="uid://usepm46ga04v" path="res://fonts/Font_Settings.tres" id="3_gjypw"]
+[ext_resource type="PackedScene" uid="uid://b0fe1qy2mf65" path="res://scenes/item.tscn" id="4_2ikwt"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(60, 2, 60)
@@ -110,7 +111,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.556639, 0)
 curve = SubResource("5")
 
 [node name="SpawnLocation" type="PathFollow3D" parent="SpawnPath"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18, 0, -15)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -18, 0, -15)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -148,3 +149,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Press enter to retry"
 label_settings = ExtResource("3_gjypw")
+
+[node name="Node3D" parent="." instance=ExtResource("4_2ikwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6355, -1.00382, -4.16151)

@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Squash the Creeps (3D) using HxGodot"
 run/main_scene="res://scenes/main.tscn"
-config/features=PackedStringArray("4.0")
+config/features=PackedStringArray("4.1")
 config/icon="res://icon.png"
 
 [input]
