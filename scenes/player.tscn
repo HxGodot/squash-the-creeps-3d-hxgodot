@@ -64,10 +64,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00389755, 0.144342, 0.0033
 shape = SubResource("2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "swim"
 libraries = {
 "": SubResource("AnimationLibrary_fd2ct")
 }
+autoplay = "swim"
 
 [connection signal="body_entered" from="MobDetector" to="." method="onTouchingMob"]
 [connection signal="body_entered" from="MobDetector" to="MobDetector" method="onBodyEntered"]

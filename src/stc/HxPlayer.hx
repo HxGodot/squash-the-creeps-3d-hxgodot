@@ -89,10 +89,10 @@ class HxPlayer extends CharacterBody3D {
             velocity.y += jumpImpulse;
         }
 
-        for (i in 0...get_slide_collision_count()) {
-            final collision = get_slide_collision(i);
+        for (i in 0...get_slide_collision_count().toInt()) {
+            var collision = get_slide_collision(i);
             if (collision != null) {
-                for (j in 0...collision.get_collision_count()) {
+                for (j in 0...collision.get_collision_count().toInt()) {
                     var collider = collision.get_collider(j);
                     if (collider != null && collider.as(Node).is_in_group(grpMob)) {
                         if (Vector3.UP().dot(collision.get_normal(j)) > 0.1) {

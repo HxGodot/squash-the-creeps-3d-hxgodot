@@ -3,6 +3,13 @@
 compatibility_minimum = "4.1.0"
 entry_symbol = "hxgodot_library_init"
 
+[icons]
+HxArea3D = "res://icons/haxe-logo-glyph.svg"
+HxMain = "res://icons/haxe-logo-glyph.svg"
+HxMob = "res://icons/haxe-logo-glyph.svg"
+HxPlayer = "res://icons/haxe-logo-glyph.svg"
+HxScore = "res://icons/haxe-logo-glyph.svg"
+
 [libraries]
 
 macos.debug = "bin/libhxgodot.debug.x86_64.dylib"

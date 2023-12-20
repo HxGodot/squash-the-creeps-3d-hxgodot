@@ -28,12 +28,11 @@ class HxMain extends Node {
         if (Engine.singleton().is_editor_hint()) // skip if in editor
             return;
 
-        mobScene = ResourceLoader.singleton().load("res://scenes/mob.tscn", "", 1).as(PackedScene);
+        mobScene = ResourceLoader.singleton().load("res://scenes/mob.tscn", "PackedScene", ResourceLoaderCacheMode.CACHE_MODE_REUSE).as(PackedScene);
         score = get_node("UserInterface/ScoreLabel").as(HxScore);
         spawnLocation = get_node("SpawnPath/SpawnLocation").as(PathFollow3D);
         player = get_node("Player").as(HxPlayer);
         retry = get_node("UserInterface/Retry").as(ColorRect);
-
         
         mobTimer = get_node("MobTimer").as(Timer);
         mobTimer.on_timeout.connect(Callable.fromObjectMethod(this, "onMobTimer"), 0);
@@ -46,10 +45,9 @@ class HxMain extends Node {
     @:export
     function onMobTimer() {
         spawnLocation.set_progress_ratio(Math.random());
-
-        final mob = mobScene.instantiate(0).as(HxMob);
+        final mob = mobScene.instantiate().as(HxMob);
         mob.translate(spawnLocation.get_position());
-        add_child(mob, false, 0);
+        add_child(mob);
         mob.initialize(player.get_position());
         mob.onSquashed.connect(Callable.fromObjectMethod(score, "onMobSquashed"), ObjectConnectFlags.CONNECT_ONE_SHOT);
     }
@@ -63,11 +61,16 @@ class HxMain extends Node {
     override function _process(_delta:Float) {
         if (Engine.singleton().is_editor_hint()) // skip if in editor
             return;
+
+        if (godot.Input.singleton().is_action_just_pressed("GC")) {
+            cpp.NativeGc.run(true);
+        }
     }
 
-    override function _unhandled_input(event:InputEvent) {
-        if (event.is_action_pressed("ui_accept", false, false) && retry.is_visible()) {
+    override function _unhandled_input(_event:InputEvent) {
+        if (_event.is_action_pressed("ui_accept", false, false) && retry.is_visible())
             get_tree().reload_current_scene();
-        }
+        else if (_event.is_action_pressed("Quit Game"))
+            get_tree().quit();
     }
 }
