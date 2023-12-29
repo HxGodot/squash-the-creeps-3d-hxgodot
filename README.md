@@ -2,9 +2,10 @@
 
 > **Warning** This is the advanced sample game. Be sure to checkout HxGodot's [README](https://github.com/HxGodot/hxgodot#readme) first.
 
-```
+```bash
 haxelib git hxgodot https://github.com/HxGodot/hxgodot.git
 haxelib run hxgodot generate_bindings -y
 scons platform=<windows|linux|macos> target=<debug|release>
 ```
-![z507](https://user-images.githubusercontent.com/5015415/211156456-b6744c1b-0b36-474f-b704-90e2808249ea.jpg)
+![image](https://github.com/HxGodot/squash-the-creeps-3d-hxgodot/assets/5015415/7d8d5472-f27c-4b93-a116-72034227544f)
+
