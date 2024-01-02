@@ -1,3 +1,5 @@
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/dazkind)
+
 # squash-the-creeps-3d-hxgodot
 
 > **Warning** This is the advanced sample game. Be sure to checkout HxGodot's [README](https://github.com/HxGodot/hxgodot#readme) first.
